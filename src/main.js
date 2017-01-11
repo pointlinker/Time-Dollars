@@ -1,7 +1,7 @@
 
 /////////////////////////////////////////////////////////////////////////////
 
-var enable_flash = true;
+var enable_flash = false;
 var enable_line = true;
 var enable_sound = true;
 var enable_amount = true;
@@ -27,6 +27,7 @@ function appendStringAsNodes(element, html) {
 		}
 
 		if (element === document.body) {
+			if (!element) alert("ERROR:\nCould'nt insert\n" + html)
 			element.insertBefore(frag, element.childNodes[0]);
 		}
 		else element.appendChild(frag); // Now, append all elements at once
@@ -39,10 +40,10 @@ var snd2, move_sound = new Audio('sound/move.ogg');
 var counter = 3;
 var L1, L2, kredit, debet, flash;
 
-setTimeout(startUpMain, 80);
-function startUpMain() {
+if (!mods) var mods = []
+mods.push(Main)
 
-	//set 'false' to remove objects
+function Main() {
 	if (enable_amount) {
 		appendStringAsNodes(document.body, "<div id='kredit' class='flyNr'></div>");
 		appendStringAsNodes(document.body, "<div id='debet' class='flyNr'></div>");
